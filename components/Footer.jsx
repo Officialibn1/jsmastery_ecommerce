@@ -13,20 +13,28 @@ const Footer = () => {
             <p>2023 TechMania Headphones &copy;All Rights Reserved</p>
 
             <p className="icons">
-                <Link href=''>
-                    <AiFillInstagram />
+                <Link href='https://instagram.com' passHref>
+                    <a target='_blank' rel='noopener noreferrer'>
+                        <AiFillInstagram />
+                    </a>
                 </Link>
 
-                <Link href=''>
-                    <AiOutlineTwitter />
+                <Link href='' passHref>
+                    <a target='_blank' rel='noopener noreferrer'>
+                        <AiOutlineTwitter />
+                    </a>
                 </Link>
 
-                <Link href=''>
-                    <AiOutlineGithub />
+                <Link href='' passHref>
+                    <a target='_blank' rel='noopener noreferrer'>
+                        <AiOutlineGithub />
+                    </a>
                 </Link>
 
-                <Link href=''>
-                    <AiFillLinkedin />
+                <Link href='' passHref>
+                    <a target='_blank' rel='noopener noreferrer'>
+                        <AiFillLinkedin />
+                    </a>
                 </Link>
             </p>
         </div>
