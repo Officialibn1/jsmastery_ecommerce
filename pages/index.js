@@ -1,10 +1,12 @@
 import React from 'react';
 import { client } from "../lib/client";
 
+import { FooterBanner, HeroBanner, Product } from '../components'
+
 const Home = ({ products, bannerData }) => {
     return (
         <>
-         HeroBanner
+         <HeroBanner bannerData={bannerData.length && bannerData[0]} />
 
          <div className='products-heading'>
             <h2>Best selling products</h2>
@@ -13,12 +15,12 @@ const Home = ({ products, bannerData }) => {
          </div>
 
          <div>
-            {['product1', 'product2', 'product3'].map(product => (
-                <h3>{product}</h3 >
+            {['product1', 'product2', 'product3'].map((product, index) => (
+                <Product key={index} />
             ))}
          </div>
 
-         Footer
+         <FooterBanner />
         </>
     );
 }
@@ -27,7 +29,7 @@ export const getServerSideProps = async () => {
     const query = '*[_type == "product"]';
     const products = await client.fetch(query);
 
-    const bannerQuery = '*[_type == "banner"]';
+    const bannerQuery = `*[_type == "banner"]`;
     const bannerData = await client.fetch(bannerQuery);
 
     return {
