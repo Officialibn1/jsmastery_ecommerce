@@ -19,19 +19,19 @@ const Footer = () => {
                     </a>
                 </Link>
 
-                <Link href='' passHref>
+                <Link href='https://instagram.com' passHref>
                     <a target='_blank' rel='noopener noreferrer'>
                         <AiOutlineTwitter />
                     </a>
                 </Link>
 
-                <Link href='' passHref>
+                <Link href='https://instagram.com' passHref>
                     <a target='_blank' rel='noopener noreferrer'>
                         <AiOutlineGithub />
                     </a>
                 </Link>
 
-                <Link href='' passHref>
+                <Link href='https://instagram.com' passHref>
                     <a target='_blank' rel='noopener noreferrer'>
                         <AiFillLinkedin />
                     </a>
