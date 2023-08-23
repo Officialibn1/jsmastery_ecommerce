@@ -4,7 +4,7 @@ import '../styles/globals.css';
 function MyApp() {
   return (
     <h1>
-      Hello World
+      Hello World 
     </h1>
   )
 }
