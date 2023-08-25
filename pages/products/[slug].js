@@ -24,6 +24,7 @@ const ProductDetails = ({ product, similarProduct }) => {
                         {image?.map((image, i) => (
                             <img 
                                 src={urlFor(image)} 
+                                key={i}
                                 className={i === imgIdx 
                                     ? 'small-image selected-image' 
                                     : 'small-image'
