@@ -6,12 +6,17 @@ import { AiOutlineMinus,
     AiOutlineStar 
 } from "react-icons/ai";
 import { Product } from '../../components'
+import { useSateContext } from '../../context/StateContext';
 
 const ProductDetails = ({ product, similarProduct }) => {
 
     const [imgIdx, setImgIdx] = useState(0);
     
     const { image, name, details, price } = product;
+
+    // Logics comming from context api
+    const { increaseQuantity, decreaseQuantity, itemQuantity, addItem } = useSateContext();
+
     return (
         <div>
             <div className="product-detail-container">
@@ -66,24 +71,26 @@ const ProductDetails = ({ product, similarProduct }) => {
                     <div className="quantity">
                         <h3>Quantity: </h3>
                         <p className="quantity-desc">
-                            <span className="minus" onClick=''>
+                            <span className="minus" onClick={decreaseQuantity} >
                                 <AiOutlineMinus />
                             </span>
 
-                            <span className="num" onClick=''>
-                                0
+                            <span className="num">
+                                {itemQuantity}
                             </span>
-                            <span className="plus" onClick=''>
+                            <span className="plus" onClick={increaseQuantity} >
                                 <AiOutlinePlus />
                             </span>
                         </p>
                     </div>
 
+                    <p>Max Quantity to be ordered per user is 10</p>
+
                     <div className="buttons">
                         <button 
                             type="button"
                             className='add-to-cart'
-                            onClick=''
+                            onClick={() => addItem(product, itemQuantity)}
                         >
                             Add to Cart
                         </button>
