@@ -63,7 +63,7 @@ export const StateContext = ({ children }) => {
 
     // Algorithm to handle the cart logics
     let foundProduct;
-    let index;
+    // let index;
 
     // Function to update the quantity of the item interacted with in the UI
     // the total quantity of items in the cart
@@ -72,11 +72,13 @@ export const StateContext = ({ children }) => {
         // Get the product interacted with in the cart
         foundProduct = cartItems.find(item => item._id === id);
         // Get the index of the product interacted with in the cart
-        index = cartItems.findIndex(item => item._id === id);
+        // index = cartItems.findIndex(item => item._id === id);
+        // New instance of the cartItem state
+        const newCartItemsState = cartItems.filter(item => item._id !== id);
 
         if(value === 'inc') {
             // Update the state of items in the cart
-            let newCartItems = [...cartItems, { ...foundProduct, quantity: foundProduct.quantity + 1}]
+            let newCartItems = [...newCartItemsState, { ...foundProduct, quantity: foundProduct.quantity + 1}]
             setCartItems(newCartItems)
 
             // Update the total price of the items in the cart
@@ -85,9 +87,9 @@ export const StateContext = ({ children }) => {
             // Update the total quantity of items in the cart
             setTotalQuantity(prev => prev + 1)
         } else if(value === 'dec') {
-            if(foundProduct.quantity > 1) {
+            if(foundProduct.quantity > 0) {
                 // Update the state of items in the cart
-                let newCartItems = [...cartItems, { ...foundProduct, quantity: foundProduct.quantity - 1}]
+                let newCartItems = [...newCartItemsState, { ...foundProduct, quantity: foundProduct.quantity - 1}]
                 setCartItems(newCartItems)
     
                 // Update the total price of the items in the cart
@@ -97,6 +99,16 @@ export const StateContext = ({ children }) => {
                 setTotalQuantity(prev => prev - 1)
             }
         }
+    }
+
+    // Function to remove an item from the cart, and update the total price and quantity of the cart
+    const removeCartItem = (item) => {
+        foundProduct = cartItems.find(product => product._id === item._id);
+        const newCartItems = cartItems.filter(product => product._id !== foundProduct._id);
+        setCartItems(newCartItems);
+
+        setTotalPrice(prev => prev - foundProduct.price * foundProduct.quantity)
+        setTotalQuantity(prev => prev - foundProduct.quantity);
     }
 
     return (
@@ -111,7 +123,8 @@ export const StateContext = ({ children }) => {
                 decreaseQuantity,
                 addItem,
                 setShowCart,
-                toggleCartItemQuantity
+                toggleCartItemQuantity,
+                removeCartItem
             }}
         >
             {children}

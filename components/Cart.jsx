@@ -18,7 +18,8 @@ const Cart = () => {
         totalQuantity, 
         cartItems, 
         setShowCart,
-        toggleCartItemQuantity 
+        toggleCartItemQuantity,
+        removeCartItem
     } = useSateContext();
 
 
@@ -85,7 +86,7 @@ const Cart = () => {
                                 <button 
                                     type="button" 
                                     className="remove-item"
-                                    onClick={() => {}}
+                                    onClick={() => removeCartItem(item)}
                                 >
                                     <TiDeleteOutline />
                                 </button>
