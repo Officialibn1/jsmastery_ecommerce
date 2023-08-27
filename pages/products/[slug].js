@@ -98,7 +98,7 @@ const ProductDetails = ({ product, similarProduct }) => {
                         <button 
                             type="button"
                             className='buy-now'
-                            onClick=''
+                            // onClick=''
                         >
                             Buy Now
                         </button>

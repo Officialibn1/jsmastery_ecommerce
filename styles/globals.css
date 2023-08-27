@@ -370,15 +370,20 @@ padding: 20px 10px;
 .item-desc .bottom{
   margin-top: 60px;
 }
+/* Adjusted */
 .flex h5{
-  font-size: 24px;
+  font-size: 18px;
 }
 .flex h4{
-  font-size: 20px;
+  font-size: 16px;
+  font-weight: 300;
 }
 .total{
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  /* border: 2px solid #000; */
+  position: relative;
 }
 .total h3{
   font-size: 22px;
@@ -395,11 +400,12 @@ padding: 20px 10px;
   position: absolute;
   bottom: 12px;
   right: 5px;
-width: 100%;
-padding: 30px 65px;
-
+  /* width: 100%; */
+  padding: 30px 65px;
 }
-
+.cart-bottom h3 {
+  margin-left: 10px;
+}
 .btn-container{
   width: 400px;
   margin: auto;
@@ -693,7 +699,8 @@ margin-top: 160px;
   }
   .cart-container{
     width: 415px;
-  padding: 4px;
+    padding: 4px;
+    /* position: relative; */
   }
   .cart-heading{
     margin-top: 35px;
@@ -725,8 +732,6 @@ margin-top: 160px;
 .top{
   flex-wrap: wrap;
   gap: 10px;
-
-
 }
 .item-desc .bottom{
   margin-top: 30px;
@@ -741,6 +746,7 @@ margin-top: 160px;
 }
 .cart-bottom{
   padding: 30px;
+  width: 100%;
 }
 
 .total h3{
