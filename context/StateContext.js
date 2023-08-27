@@ -61,6 +61,44 @@ export const StateContext = ({ children }) => {
         setItemQuantity((prev) => prev > 1 ? prev - 1 : prev)
     }
 
+    // Algorithm to handle the cart logics
+    let foundProduct;
+    let index;
+
+    // Function to update the quantity of the item interacted with in the UI
+    // the total quantity of items in the cart
+    // and the total price of items in the cart
+    const toggleCartItemQuantity = (id, value) => {
+        // Get the product interacted with in the cart
+        foundProduct = cartItems.find(item => item._id === id);
+        // Get the index of the product interacted with in the cart
+        index = cartItems.findIndex(item => item._id === id);
+
+        if(value === 'inc') {
+            // Update the state of items in the cart
+            let newCartItems = [...cartItems, { ...foundProduct, quantity: foundProduct.quantity + 1}]
+            setCartItems(newCartItems)
+
+            // Update the total price of the items in the cart
+            setTotalPrice(prev => prev + foundProduct.price)
+
+            // Update the total quantity of items in the cart
+            setTotalQuantity(prev => prev + 1)
+        } else if(value === 'dec') {
+            if(foundProduct.quantity > 1) {
+                // Update the state of items in the cart
+                let newCartItems = [...cartItems, { ...foundProduct, quantity: foundProduct.quantity - 1}]
+                setCartItems(newCartItems)
+    
+                // Update the total price of the items in the cart
+                setTotalPrice(prev => prev - foundProduct.price)
+    
+                // Update the total quantity of items in the cart
+                setTotalQuantity(prev => prev - 1)
+            }
+        }
+    }
+
     return (
         <Context.Provider
             value = {{
@@ -72,7 +110,8 @@ export const StateContext = ({ children }) => {
                 increaseQuantity,
                 decreaseQuantity,
                 addItem,
-                setShowCart
+                setShowCart,
+                toggleCartItemQuantity
             }}
         >
             {children}
